@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Home from './components/home/Home';
 import ProductList from "./components/product/ProductList";
 import CustomerList from "./components/customer/CustomerList";
+import SaleList from "./components/sale/SaleList";
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
                     <Route path="/" element={<Home/>} />
                     <Route path="/product" element={<ProductList/>} />
                     <Route path="/customer" element={<CustomerList/>} />
+                    <Route path="/sale" element={<SaleList/>} />
                 </Routes>
             </div>
         </Router>
