@@ -6,6 +6,7 @@ import Home from './components/home/Home';
 import ProductList from "./components/product/ProductList";
 import CustomerList from "./components/customer/CustomerList";
 import SaleList from "./components/sale/SaleList";
+import InvoiceList from "./components/invoice/InvoiceList";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                     <Route path="/product" element={<ProductList/>} />
                     <Route path="/customer" element={<CustomerList/>} />
                     <Route path="/sale" element={<SaleList/>} />
+                    <Route path="/invoice" element={<InvoiceList/>} />
                 </Routes>
             </div>
         </Router>
