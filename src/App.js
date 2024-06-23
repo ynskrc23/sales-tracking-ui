@@ -7,6 +7,7 @@ import ProductList from "./components/product/ProductList";
 import CustomerList from "./components/customer/CustomerList";
 import SaleList from "./components/sale/SaleList";
 import InvoiceList from "./components/invoice/InvoiceList";
+import SalesRepresentativeList from "./components/salesrepresentative/SalesRepresentativeList";
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path="/customer" element={<CustomerList/>} />
                     <Route path="/sale" element={<SaleList/>} />
                     <Route path="/invoice" element={<InvoiceList/>} />
+                    <Route path="/salesrepresentative" element={<SalesRepresentativeList/>} />
                 </Routes>
             </div>
         </Router>
