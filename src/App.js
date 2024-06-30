@@ -8,6 +8,8 @@ import CustomerList from "./components/customer/CustomerList";
 import SaleList from "./components/sale/SaleList";
 import InvoiceList from "./components/invoice/InvoiceList";
 import SalesRepresentativeList from "./components/salesrepresentative/SalesRepresentativeList";
+import CustomerAdd from "./components/customer/CustomerAdd";
+import CustomerUpdate from "./components/customer/CustomerUpdate";
 
 const App = () => {
     return (
@@ -21,6 +23,8 @@ const App = () => {
                     <Route path="/sale" element={<SaleList/>} />
                     <Route path="/invoice" element={<InvoiceList/>} />
                     <Route path="/salesrepresentative" element={<SalesRepresentativeList/>} />
+                    <Route path="/customer-add" element={<CustomerAdd/>} />
+                    <Route path="/customer-update/:id" element={<CustomerUpdate/>} />
                 </Routes>
             </div>
         </Router>

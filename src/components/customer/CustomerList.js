@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import {Link} from "react-router-dom";
 
 const CustomerList = () => {
     const [customers, setcustomers] = useState([]);
@@ -27,7 +28,14 @@ const CustomerList = () => {
 
     return (
         <div className="container">
-            <h4 className="mt-3">Customer List</h4>
+            <div className="row">
+                <div className="col-md-6">
+                    <h4 className="mt-3">Customer List</h4>
+                </div>
+                <div className="col-md-6">
+                    <Link to="/customer-add"> Add Customer </Link>
+                </div>
+            </div>
             <table className="table table-striped table-bordered">
                 <thead className="thead-dark">
                 <tr>
@@ -43,8 +51,8 @@ const CustomerList = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {customers.map((item, index) => (
-                    <tr key={index}>
+                {customers.map((item) => (
+                    <tr key={item.id}>
                         <td>{item.firstName} {item.lastName}</td>
                         <td>{item.email}</td>
                         <td>{item.phone}</td>
@@ -54,7 +62,7 @@ const CustomerList = () => {
                         <td>{item.zipCode}</td>
                         <td>{item.country}</td>
                         <td>
-                            <Button className="btn-sm" variant="warning">Edit</Button>{' '}
+                            <Link to={`/customer-update/${item.id}`} className="btn btn-sm btn-warning">Edit</Link>
                             <Button className="btn-sm" variant="danger">Delete</Button>
                         </td>
                     </tr>
