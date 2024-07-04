@@ -10,6 +10,8 @@ import InvoiceList from "./components/invoice/InvoiceList";
 import SalesRepresentativeList from "./components/salesrepresentative/SalesRepresentativeList";
 import CustomerAdd from "./components/customer/CustomerAdd";
 import CustomerUpdate from "./components/customer/CustomerUpdate";
+import ProductAdd from "./components/product/ProductAdd";
+import ProductUpdate from "./components/product/ProductUpdate";
 
 const App = () => {
     return (
@@ -25,6 +27,8 @@ const App = () => {
                     <Route path="/salesrepresentative" element={<SalesRepresentativeList/>} />
                     <Route path="/customer-add" element={<CustomerAdd/>} />
                     <Route path="/customer-update/:id" element={<CustomerUpdate/>} />
+                    <Route path="/product-add" element={<ProductAdd/>} />
+                    <Route path="/product-update/:id" element={<ProductUpdate/>} />
                 </Routes>
             </div>
         </Router>

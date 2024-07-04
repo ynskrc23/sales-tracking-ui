@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import {Link} from "react-router-dom";
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -27,11 +28,18 @@ const ProductList = () => {
 
     return (
         <div className="container">
-            <h4 className="mt-3">Product List</h4>
+            <div className="row">
+                <div className="col-md-6">
+                    <h4 className="mt-3">Product List</h4>
+                </div>
+                <div className="col-md-6">
+                    <h4 className="mt-3 float-end"><Link to="/product-add"> Add Product </Link></h4>
+                </div>
+            </div>
             <table className="table table-striped table-bordered">
                 <thead className="thead-dark">
                 <tr>
-                    <th>Name</th>
+                <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
                     <th>Stock</th>
@@ -46,7 +54,7 @@ const ProductList = () => {
                         <td>{item.price}</td>
                         <td>{item.stockQuantity}</td>
                         <td>
-                            <Button className="btn-sm" variant="warning">Edit</Button>{' '}
+                            <Link to={`/product-update/${item.id}`} className="btn btn-sm btn-warning m-lg-1">Edit</Link>
                             <Button className="btn-sm" variant="danger">Delete</Button>
                         </td>
                     </tr>

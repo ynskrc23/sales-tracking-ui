@@ -33,7 +33,7 @@ const CustomerList = () => {
                     <h4 className="mt-3">Customer List</h4>
                 </div>
                 <div className="col-md-6">
-                    <Link to="/customer-add"> Add Customer </Link>
+                    <h4 className="mt-3 float-end"><Link to="/customer-add"> Add Customer </Link></h4>
                 </div>
             </div>
             <table className="table table-striped table-bordered">
@@ -62,7 +62,7 @@ const CustomerList = () => {
                         <td>{item.zipCode}</td>
                         <td>{item.country}</td>
                         <td>
-                            <Link to={`/customer-update/${item.id}`} className="btn btn-sm btn-warning">Edit</Link>
+                            <Link to={`/customer-update/${item.id}`} className="btn btn-sm btn-warning m-lg-1">Edit</Link>
                             <Button className="btn-sm" variant="danger">Delete</Button>
                         </td>
                     </tr>

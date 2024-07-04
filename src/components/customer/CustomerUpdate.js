@@ -62,8 +62,8 @@ const CustomerUpdate = () => {
             <h4 className="mb-3">Update Customer</h4>
             <form onSubmit={handleSubmit}>
                 <div className="row">
-                    <div className="form-group col-md-4">
-                        <label htmlFor="firstName">First Name</label>
+                    <div className="form-group col-md-4 mb-3">
+                        <label htmlFor="firstName" className="mb-1">First Name</label>
                         <input
                             id="firstName"
                             name="firstName"
@@ -74,8 +74,8 @@ const CustomerUpdate = () => {
                             required
                         />
                     </div>
-                    <div className="form-group col-md-4">
-                        <label htmlFor="lastName">Last Name</label>
+                    <div className="form-group col-md-4 mb-3">
+                        <label htmlFor="lastName" className="mb-1">Last Name</label>
                         <input
                             id="lastName"
                             name="lastName"
@@ -86,8 +86,8 @@ const CustomerUpdate = () => {
                             required
                         />
                     </div>
-                    <div className="form-group col-md-4">
-                        <label htmlFor="email">Email</label>
+                    <div className="form-group col-md-4 mb-3">
+                        <label htmlFor="email" className="mb-1">Email</label>
                         <input
                             id="email"
                             name="email"
@@ -98,8 +98,8 @@ const CustomerUpdate = () => {
                             required
                         />
                     </div>
-                    <div className="form-group col-md-4">
-                        <label htmlFor="phone">Phone</label>
+                    <div className="form-group col-md-4 mb-3">
+                        <label htmlFor="phone" className="mb-1">Phone</label>
                         <input
                             id="phone"
                             name="phone"
@@ -110,8 +110,8 @@ const CustomerUpdate = () => {
                             required
                         />
                     </div>
-                    <div className="form-group col-md-4">
-                        <label htmlFor="address">Address</label>
+                    <div className="form-group col-md-4 mb-3">
+                        <label htmlFor="address" className="mb-1">Address</label>
                         <input
                             id="address"
                             name="address"
@@ -122,8 +122,8 @@ const CustomerUpdate = () => {
                             required
                         />
                     </div>
-                    <div className="form-group col-md-4">
-                        <label htmlFor="city">City</label>
+                    <div className="form-group col-md-4 mb-3">
+                        <label htmlFor="city" className="mb-1">City</label>
                         <input
                             id="city"
                             name="city"
@@ -134,8 +134,8 @@ const CustomerUpdate = () => {
                             required
                         />
                     </div>
-                    <div className="form-group col-md-4">
-                        <label htmlFor="state">State</label>
+                    <div className="form-group col-md-4 mb-3">
+                        <label htmlFor="state" className="mb-1">State</label>
                         <input
                             id="state"
                             name="state"
@@ -146,8 +146,8 @@ const CustomerUpdate = () => {
                             required
                         />
                     </div>
-                    <div className="form-group col-md-4">
-                        <label htmlFor="zipCode">Zip Code</label>
+                    <div className="form-group col-md-4 mb-3">
+                        <label htmlFor="zipCode" className="mb-1">Zip Code</label>
                         <input
                             id="zipCode"
                             name="zipCode"
@@ -158,8 +158,8 @@ const CustomerUpdate = () => {
                             required
                         />
                     </div>
-                    <div className="form-group col-md-4">
-                        <label htmlFor="country">Country</label>
+                    <div className="form-group col-md-4 mb-3">
+                        <label htmlFor="country" className="mb-1">Country</label>
                         <input
                             id="country"
                             name="country"
