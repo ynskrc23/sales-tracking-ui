@@ -2,6 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+# Projenin Fotoğrafları
+
+<img src="https://github.com/ynskrc23/sales-tracking/blob/master/image/tasarim.png" alt="tasarim">
+<img src="https://github.com/ynskrc23/sales-tracking/blob/master/image/tasarim2.png" alt="tasarim">
+<img src="https://github.com/ynskrc23/sales-tracking/blob/master/image/tasarim3.png" alt="tasarim">
+<img src="https://github.com/ynskrc23/sales-tracking/blob/master/image/tasarim4.png" alt="tasarim">
+<img src="https://github.com/ynskrc23/sales-tracking/blob/master/image/tasarim5.png" alt="tasarim">
+<img src="https://github.com/ynskrc23/sales-tracking/blob/master/image/tasarim6.png" alt="tasarim">
+<img src="https://github.com/ynskrc23/sales-tracking/blob/master/image/tasarim7.png" alt="tasarim">
 ## Available Scripts
 
 In the project directory, you can run:
