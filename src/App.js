@@ -12,6 +12,7 @@ import CustomerAdd from "./components/customer/CustomerAdd";
 import CustomerUpdate from "./components/customer/CustomerUpdate";
 import ProductAdd from "./components/product/ProductAdd";
 import ProductUpdate from "./components/product/ProductUpdate";
+import SaleDetails from "./components/sale/SaleDetails";
 
 const App = () => {
     return (
@@ -29,6 +30,7 @@ const App = () => {
                     <Route path="/customer-update/:id" element={<CustomerUpdate/>} />
                     <Route path="/product-add" element={<ProductAdd/>} />
                     <Route path="/product-update/:id" element={<ProductUpdate/>} />
+                    <Route path="/sale-details/:id" element={<SaleDetails/>} />
                 </Routes>
             </div>
         </Router>
