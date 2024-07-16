@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import {Link} from "react-router-dom";
 
 const SalesRepresentativeList = () => {
     const [SalesRepresentatives, setSalesRepresentatives] = useState([]);
@@ -27,7 +28,14 @@ const SalesRepresentativeList = () => {
 
     return (
         <div className="container">
-            <h4 className="mt-3">SalesRepresentative List</h4>
+            <div className="row">
+                <div className="col-md-6">
+                    <h4 className="mt-3">Sales Representative List</h4>
+                </div>
+                <div className="col-md-6">
+                    <h4 className="mt-3 float-end"><Link to="/salesrepresentative-add"> Add Sales Representative </Link></h4>
+                </div>
+            </div>
             <table className="table table-striped table-bordered">
                 <thead className="thead-dark">
                 <tr>
@@ -44,7 +52,7 @@ const SalesRepresentativeList = () => {
                         <td>{item.email}</td>
                         <td>{item.phone}</td>
                         <td>
-                            <Button className="btn-sm" variant="warning">Edit</Button>{' '}
+                            <Link to={`/salesrepresentative-update/${item.id}`} className="btn btn-sm btn-warning m-lg-1">Edit</Link>
                             <Button className="btn-sm" variant="danger">Delete</Button>
                         </td>
                     </tr>

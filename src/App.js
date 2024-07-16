@@ -13,6 +13,8 @@ import CustomerUpdate from "./components/customer/CustomerUpdate";
 import ProductAdd from "./components/product/ProductAdd";
 import ProductUpdate from "./components/product/ProductUpdate";
 import SaleDetails from "./components/sale/SaleDetails";
+import SalesRepresentativeAdd from "./components/salesrepresentative/SalesRepresentativeAdd";
+import SalesRepresentativeUpdate from "./components/salesrepresentative/SalesRepresentativeUpdate";
 
 const App = () => {
     return (
@@ -26,6 +28,8 @@ const App = () => {
                     <Route path="/sale" element={<SaleList/>} />
                     <Route path="/invoice" element={<InvoiceList/>} />
                     <Route path="/salesrepresentative" element={<SalesRepresentativeList/>} />
+                    <Route path="/salesrepresentative-add" element={<SalesRepresentativeAdd/>} />
+                    <Route path="/salesrepresentative-update/:id" element={<SalesRepresentativeUpdate/>} />
                     <Route path="/customer-add" element={<CustomerAdd/>} />
                     <Route path="/customer-update/:id" element={<CustomerUpdate/>} />
                     <Route path="/product-add" element={<ProductAdd/>} />
