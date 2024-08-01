@@ -5,13 +5,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Projenin Fotoğrafları
 
-<img src="https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim.png" alt="tasarim">
-<img src="https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim2.png" alt="tasarim">
-<img src="https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim3.png" alt="tasarim">
-<img src="https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim4.png" alt="tasarim">
-<img src="https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim5.png" alt="tasarim">
-<img src="https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim6.png" alt="tasarim">
-<img src="https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim7.png" alt="tasarim">
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim2.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim3.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim4.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim5.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim6.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim7.PNG)
 ## Available Scripts
 
 In the project directory, you can run:
