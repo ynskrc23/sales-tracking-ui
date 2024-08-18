@@ -5,10 +5,27 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Projenin Fotoğrafları
 
-![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim.PNG)
-![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim2.PNG)
-![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim3.PNG)
-![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim4.PNG)
-![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim5.PNG)
-![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim6.PNG)
-![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/tasarim7.PNG)
+### Customer Sayfası
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/customerlist.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/customeradd.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/customeredit.PNG)
+
+### Invoice Sayfası
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/invoicelist.PNG)
+
+### Product Sayfası
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/productlist.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/productadd.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/productedit.PNG)
+
+
+### Sale Sayfası
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/salelist.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/saledetail.PNG)
+
+### Sales Representative Sayfası
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/saleslist.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/salesadd.PNG)
+![](https://github.com/ynskrc23/sales-tracking-ui/blob/master/image/salesedit.PNG)
+
+
