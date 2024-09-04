@@ -5,16 +5,16 @@ import Navbar from './components/layout/Navbar';
 import Home from './components/home/Home';
 import ProductList from "./components/product/ProductList";
 import CustomerList from "./components/customer/CustomerList";
+import CustomerForm from "./components/customer/CustomerForm";
 import SaleList from "./components/sale/SaleList";
 import InvoiceList from "./components/invoice/InvoiceList";
 import SalesRepresentativeList from "./components/salesrepresentative/SalesRepresentativeList";
-import CustomerAdd from "./components/customer/CustomerAdd";
-import CustomerUpdate from "./components/customer/CustomerUpdate";
 import ProductAdd from "./components/product/ProductAdd";
 import ProductUpdate from "./components/product/ProductUpdate";
 import SaleDetails from "./components/sale/SaleDetails";
 import SalesRepresentativeAdd from "./components/salesrepresentative/SalesRepresentativeAdd";
 import SalesRepresentativeUpdate from "./components/salesrepresentative/SalesRepresentativeUpdate";
+
 
 const App = () => {
     return (
@@ -24,17 +24,21 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Home/>} />
                     <Route path="/product" element={<ProductList/>} />
+                    <Route path="/product-add" element={<ProductAdd/>} />
+                    <Route path="/product-update/:id" element={<ProductUpdate/>} />
+
                     <Route path="/customer" element={<CustomerList/>} />
+                    <Route path="/customer/add" element={<CustomerForm/>} />
+                    <Route path="/customer/edit/:customerId" element={<CustomerForm/>} />
+
                     <Route path="/sale" element={<SaleList/>} />
+                    <Route path="/sale-details/:id" element={<SaleDetails/>} />
+
                     <Route path="/invoice" element={<InvoiceList/>} />
+
                     <Route path="/salesrepresentative" element={<SalesRepresentativeList/>} />
                     <Route path="/salesrepresentative-add" element={<SalesRepresentativeAdd/>} />
                     <Route path="/salesrepresentative-update/:id" element={<SalesRepresentativeUpdate/>} />
-                    <Route path="/customer-add" element={<CustomerAdd/>} />
-                    <Route path="/customer-update/:id" element={<CustomerUpdate/>} />
-                    <Route path="/product-add" element={<ProductAdd/>} />
-                    <Route path="/product-update/:id" element={<ProductUpdate/>} />
-                    <Route path="/sale-details/:id" element={<SaleDetails/>} />
                 </Routes>
             </div>
         </Router>
