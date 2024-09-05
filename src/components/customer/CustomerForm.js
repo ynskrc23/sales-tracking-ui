@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {useNavigate, useParams} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const CustomerForm = ({ customer }) => {
+const CustomerForm = () => {
 	const [form, setForm] = useState({
 		customerId: null,
 		firstName: '',
@@ -14,6 +14,7 @@ const CustomerForm = ({ customer }) => {
 		country: ''
 	});
 	const [successMessage, setSuccessMessage] = useState('');
+	const [errors, setErrors] = useState({});
 	const navigate = useNavigate();
 	const { customerId } = useParams();
 
@@ -31,13 +32,42 @@ const CustomerForm = ({ customer }) => {
 			console.error('Error fetching customer:', error);
 		}
 	};
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
+		setErrors({ ...errors, [name]: '' }); // Temizle hata mesajını
+	};
+
+	const validateForm = () => {
+		let formErrors = {};
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		const phoneRegex = /^[0-9]*$/; // Yalnızca rakamları kabul et
+
+		if (!form.firstName) formErrors.firstName = 'First name is required';
+		if (!form.lastName) formErrors.lastName = 'Last name is required';
+		if (!form.email) {
+			formErrors.email = 'Email is required';
+		} else if (!emailRegex.test(form.email)) {
+			formErrors.email = 'Invalid email format';
+		}
+		if (!form.phone) {
+			formErrors.phone = 'Phone is required';
+		} else if (!phoneRegex.test(form.phone)) {
+			formErrors.phone = 'Phone must contain only numbers';
+		}
+		if (!form.address) formErrors.address = 'Address is required';
+		if (!form.city) formErrors.city = 'City is required';
+		if (!form.country) formErrors.country = 'Country is required';
+
+		setErrors(formErrors);
+		return Object.keys(formErrors).length === 0; // Eğer hata yoksa true döner
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		if (!validateForm()) return;
+
 		const formData = {
 			customerId: form.customerId,
 			firstName: form.firstName,
@@ -85,8 +115,8 @@ const CustomerForm = ({ customer }) => {
 							className="form-control"
 							value={form.firstName}
 							onChange={handleChange}
-							required
 						/>
+						{errors.firstName && <div className="text-danger">{errors.firstName}</div>}
 					</div>
 					<div className="form-group col-md-4 mb-3">
 						<label htmlFor="lastName" className="mb-1">Last Name</label>
@@ -97,8 +127,8 @@ const CustomerForm = ({ customer }) => {
 							className="form-control"
 							value={form.lastName}
 							onChange={handleChange}
-							required
 						/>
+						{errors.lastName && <div className="text-danger">{errors.lastName}</div>}
 					</div>
 					<div className="form-group col-md-4 mb-3">
 						<label htmlFor="email" className="mb-1">Email</label>
@@ -109,8 +139,8 @@ const CustomerForm = ({ customer }) => {
 							className="form-control"
 							value={form.email}
 							onChange={handleChange}
-							required
 						/>
+						{errors.email && <div className="text-danger">{errors.email}</div>}
 					</div>
 					<div className="form-group col-md-4 mb-3">
 						<label htmlFor="phone" className="mb-1">Phone</label>
@@ -121,8 +151,8 @@ const CustomerForm = ({ customer }) => {
 							className="form-control"
 							value={form.phone}
 							onChange={handleChange}
-							required
 						/>
+						{errors.phone && <div className="text-danger">{errors.phone}</div>}
 					</div>
 					<div className="form-group col-md-4 mb-3">
 						<label htmlFor="address" className="mb-1">Address</label>
@@ -133,8 +163,8 @@ const CustomerForm = ({ customer }) => {
 							className="form-control"
 							value={form.address}
 							onChange={handleChange}
-							required
 						/>
+						{errors.address && <div className="text-danger">{errors.address}</div>}
 					</div>
 					<div className="form-group col-md-4 mb-3">
 						<label htmlFor="city" className="mb-1">City</label>
@@ -145,8 +175,8 @@ const CustomerForm = ({ customer }) => {
 							className="form-control"
 							value={form.city}
 							onChange={handleChange}
-							required
 						/>
+						{errors.city && <div className="text-danger">{errors.city}</div>}
 					</div>
 					<div className="form-group col-md-4 mb-3">
 						<label htmlFor="country" className="mb-1">Country</label>
@@ -157,8 +187,8 @@ const CustomerForm = ({ customer }) => {
 							className="form-control"
 							value={form.country}
 							onChange={handleChange}
-							required
 						/>
+						{errors.country && <div className="text-danger">{errors.country}</div>}
 					</div>
 				</div>
 
