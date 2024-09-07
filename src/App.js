@@ -14,7 +14,10 @@ import ProductUpdate from "./components/product/ProductUpdate";
 import SaleDetails from "./components/sale/SaleDetails";
 import SalesRepresentativeAdd from "./components/salesrepresentative/SalesRepresentativeAdd";
 import SalesRepresentativeUpdate from "./components/salesrepresentative/SalesRepresentativeUpdate";
-
+import RoleList from "./components/role/RoleList";
+import RoleForm from "./components/role/RoleForm";
+import MenuList from "./components/menu/MenuList";
+import MenuForm from "./components/menu/MenuForm";
 
 const App = () => {
     return (
@@ -39,6 +42,13 @@ const App = () => {
                     <Route path="/salesrepresentative" element={<SalesRepresentativeList/>} />
                     <Route path="/salesrepresentative-add" element={<SalesRepresentativeAdd/>} />
                     <Route path="/salesrepresentative-update/:id" element={<SalesRepresentativeUpdate/>} />
+
+	                <Route path="/role" element={<RoleList/>} />
+	                <Route path="/role/add" element={<RoleForm/>} />
+
+	                <Route path="/menu" element={<MenuList/>} />
+	                <Route path="/menu/add" element={<MenuForm/>} />
+	                <Route path="/menu/edit/:menuId" element={<MenuForm/>} />
                 </Routes>
             </div>
         </Router>
