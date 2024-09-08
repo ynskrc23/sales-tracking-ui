@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import { useNavigate, useParams } from 'react-router-dom';
 
 const RoleForm = () => {
 	const [roleName, setRoleName] = useState("");
@@ -8,6 +9,9 @@ const RoleForm = () => {
 	const [menuPermissions, setMenuPermissions] = useState([]);
 	const [allChecked, setAllChecked] = useState(false);
 	const [menus, setMenus] = useState([]); // Menüler için state
+	const [successMessage, setSuccessMessage] = useState(""); // Başarı mesajı için state
+
+	const navigate = useNavigate(); // useNavigate'i buradan alıyoruz
 
 	useEffect(() => {
 		const fetchMenus = async () => {
@@ -78,7 +82,7 @@ const RoleForm = () => {
 
 		const roleData = {
 			roleName: roleName,
-			roleStatus: roleStatus,
+			roleStatus: roleStatus === "1",  // String olarak "1" geldiğinde true yap
 			permissions: permissionsList,
 		};
 
@@ -87,6 +91,15 @@ const RoleForm = () => {
 		try {
 			await axios.post("/api/roles", roleData);
 			console.log("Role eklendi");
+
+			// Başarı mesajını göster
+			setSuccessMessage('Rol başarıyla eklendi.');
+
+			// 2 saniye sonra yönlendirme yap
+			setTimeout(() => {
+				setSuccessMessage(''); // Mesajı temizle
+				navigate('/role'); // Yönlendirme yap
+			}, 2000);
 		} catch (error) {
 			console.error("Role eklenirken hata oluştu:", error.response ? error.response.data : error.message);
 		}
@@ -95,6 +108,7 @@ const RoleForm = () => {
 	return (
 		<div className="container mt-4">
 			<h4 className="mb-3">{roleName ? "Update Role" : "Add Role"}</h4>
+			{successMessage && <div className="alert alert-success">{successMessage}</div>}
 			<Form onSubmit={handleSubmit}>
 				<Row>
 					<Col md={6}>
