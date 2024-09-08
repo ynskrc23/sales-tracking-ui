@@ -3,6 +3,22 @@ import axios from "axios";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useNavigate, useParams } from 'react-router-dom';
 
+// JSON temizleme ve analiz etme işlevi
+const cleanAndParseJson = (jsonString) => {
+	try {
+		// Yıldız karakterlerini virgüllerle değiştirin
+		const cleanedJsonString = jsonString
+			.replace(/\*/g, ',')  // Yıldız karakterlerini virgül ile değiştirin
+			.replace(/,+$/, ''); // Sonundaki fazla virgülleri temizleyin
+
+		// JSON string'ini bir dizi nesnesi olarak analiz edin
+		return JSON.parse(`[${cleanedJsonString}]`);
+	} catch (error) {
+		console.error('JSON parsing error:', error);
+		return [];
+	}
+};
+
 const RoleForm = () => {
 	const [roleName, setRoleName] = useState("");
 	const [roleStatus, setRoleStatus] = useState("");
@@ -10,8 +26,8 @@ const RoleForm = () => {
 	const [allChecked, setAllChecked] = useState(false);
 	const [menus, setMenus] = useState([]); // Menüler için state
 	const [successMessage, setSuccessMessage] = useState(""); // Başarı mesajı için state
-
-	const navigate = useNavigate(); // useNavigate'i buradan alıyoruz
+	const { roleId } = useParams(); // URL parametrelerinden role id'sini al
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchMenus = async () => {
@@ -38,8 +54,44 @@ const RoleForm = () => {
 			}
 		};
 
+		const fetchRoleData = async () => {
+			if (roleId) {
+				try {
+					const response = await axios.get(`/api/roles/${roleId}`);
+					const roleData = response.data;
+
+					// Role bilgilerini ayarla
+					setRoleName(roleData.roleName);
+					setRoleStatus(roleData.roleStatus ? "1" : "2");
+
+					// JSON string'ini temizleyin ve dönüştürün
+					let rolePermissions;
+					try {
+						rolePermissions = cleanAndParseJson(roleData.rolePermission);
+					} catch (jsonError) {
+						console.error('RolePermission JSON parsing error:', jsonError);
+						return;
+					}
+
+					// Menü izinlerini ayarla
+					const existingPermissions = rolePermissions.map((permission) => ({
+						menu_id: permission.menu_id,
+						permission_show: permission.permission_show,
+						permission_add: permission.permission_add,
+						permission_update: permission.permission_update,
+						permission_delete: permission.permission_delete,
+						permission_datatable: permission.permission_datatable,
+					}));
+					setMenuPermissions(existingPermissions);
+				} catch (error) {
+					console.error("Role bilgisi alınırken hata oluştu:", error);
+				}
+			}
+		};
+
 		fetchMenus();
-	}, []);
+		fetchRoleData(); // Eğer bir role id'si varsa rolü fetch et
+	}, [roleId]);
 
 	const handlePermissionChange = (menuId, permissionType, value) => {
 		setMenuPermissions((prevPermissions) =>
@@ -82,18 +134,20 @@ const RoleForm = () => {
 
 		const roleData = {
 			roleName: roleName,
-			roleStatus: roleStatus === "1",  // String olarak "1" geldiğinde true yap
+			roleStatus: roleStatus === "1", // String olarak "1" geldiğinde true yap
 			permissions: permissionsList,
 		};
 
-		console.log(roleData);  // Gönderilen veriyi kontrol edin
-
 		try {
-			await axios.post("/api/roles", roleData);
-			console.log("Role eklendi");
-
-			// Başarı mesajını göster
-			setSuccessMessage('Rol başarıyla eklendi.');
+			if (roleId) {
+				// Eğer id varsa update işlemi yap
+				await axios.put(`/api/roles/${roleId}`, roleData);
+				setSuccessMessage('Rol başarıyla güncellendi.');
+			} else {
+				// id yoksa yeni rol ekle
+				await axios.post("/api/roles", roleData);
+				setSuccessMessage('Rol başarıyla eklendi.');
+			}
 
 			// 2 saniye sonra yönlendirme yap
 			setTimeout(() => {
@@ -101,13 +155,13 @@ const RoleForm = () => {
 				navigate('/role'); // Yönlendirme yap
 			}, 2000);
 		} catch (error) {
-			console.error("Role eklenirken hata oluştu:", error.response ? error.response.data : error.message);
+			console.error("Role eklenirken/güncellenirken hata oluştu:", error.response ? error.response.data : error.message);
 		}
 	};
 
 	return (
 		<div className="container mt-4">
-			<h4 className="mb-3">{roleName ? "Update Role" : "Add Role"}</h4>
+			<h4 className="mb-3">{roleId ? "Update Role" : "Add Role"}</h4>
 			{successMessage && <div className="alert alert-success">{successMessage}</div>}
 			<Form onSubmit={handleSubmit}>
 				<Row>
@@ -184,7 +238,7 @@ const RoleForm = () => {
 				</div>
 
 				<Button variant="primary" type="submit">
-					{roleName ? "Update Role" : "Add Role"}
+					{roleId ? "Update Role" : "Add Role"}
 				</Button>
 			</Form>
 		</div>

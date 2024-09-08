@@ -48,12 +48,6 @@ const RoleList = () => {
 			sortable: true,
 		},
 		{
-			name: 'Permissions',
-			cell: row => (
-				<Link to={`/role/permissions/${row.roleId}`} className="btn btn-sm btn-info">View Permissions</Link>
-			),
-		},
-		{
 			name: 'Action',
 			cell: row => (
 				<div>

@@ -45,6 +45,7 @@ const App = () => {
 
 	                <Route path="/role" element={<RoleList/>} />
 	                <Route path="/role/add" element={<RoleForm/>} />
+	                <Route path="/role/edit/:roleId" element={<RoleForm/>} />
 
 	                <Route path="/menu" element={<MenuList/>} />
 	                <Route path="/menu/add" element={<MenuForm/>} />
