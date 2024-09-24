@@ -9,8 +9,7 @@ import CustomerForm from "./components/customer/CustomerForm";
 import SaleList from "./components/sale/SaleList";
 import InvoiceList from "./components/invoice/InvoiceList";
 import SalesRepresentativeList from "./components/salesrepresentative/SalesRepresentativeList";
-import ProductAdd from "./components/product/ProductAdd";
-import ProductUpdate from "./components/product/ProductUpdate";
+import ProductForm from "./components/product/ProductForm";
 import SaleDetails from "./components/sale/SaleDetails";
 import SalesRepresentativeAdd from "./components/salesrepresentative/SalesRepresentativeAdd";
 import SalesRepresentativeUpdate from "./components/salesrepresentative/SalesRepresentativeUpdate";
@@ -27,8 +26,8 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Home/>} />
                     <Route path="/product" element={<ProductList/>} />
-                    <Route path="/product-add" element={<ProductAdd/>} />
-                    <Route path="/product-update/:id" element={<ProductUpdate/>} />
+                    <Route path="/product/add" element={<ProductForm/>} />
+                    <Route path="/product/edit/:productId" element={<ProductForm/>} />
 
                     <Route path="/customer" element={<CustomerList/>} />
                     <Route path="/customer/add" element={<CustomerForm/>} />
