@@ -17,6 +17,8 @@ import RoleList from "./components/role/RoleList";
 import RoleForm from "./components/role/RoleForm";
 import MenuList from "./components/menu/MenuList";
 import MenuForm from "./components/menu/MenuForm";
+import CategoryForm from "./components/category/CategoryForm";
+import CategoryList from "./components/category/CategoryList";
 
 const App = () => {
     return (
@@ -33,6 +35,18 @@ const App = () => {
                     <Route path="/customer/add" element={<CustomerForm/>} />
                     <Route path="/customer/edit/:customerId" element={<CustomerForm/>} />
 
+	                <Route path="/role" element={<RoleList/>} />
+	                <Route path="/role/add" element={<RoleForm/>} />
+	                <Route path="/role/edit/:roleId" element={<RoleForm/>} />
+
+	                <Route path="/menu" element={<MenuList/>} />
+	                <Route path="/menu/add" element={<MenuForm/>} />
+	                <Route path="/menu/edit/:menuId" element={<MenuForm/>} />
+
+	                <Route path="/category" element={<CategoryList/>} />
+	                <Route path="/category/add" element={<CategoryForm/>} />
+	                <Route path="/category/edit/:categoryId" element={<CategoryForm/>} />
+
                     <Route path="/sale" element={<SaleList/>} />
                     <Route path="/sale-details/:id" element={<SaleDetails/>} />
 
@@ -41,14 +55,6 @@ const App = () => {
                     <Route path="/salesrepresentative" element={<SalesRepresentativeList/>} />
                     <Route path="/salesrepresentative-add" element={<SalesRepresentativeAdd/>} />
                     <Route path="/salesrepresentative-update/:id" element={<SalesRepresentativeUpdate/>} />
-
-	                <Route path="/role" element={<RoleList/>} />
-	                <Route path="/role/add" element={<RoleForm/>} />
-	                <Route path="/role/edit/:roleId" element={<RoleForm/>} />
-
-	                <Route path="/menu" element={<MenuList/>} />
-	                <Route path="/menu/add" element={<MenuForm/>} />
-	                <Route path="/menu/edit/:menuId" element={<MenuForm/>} />
                 </Routes>
             </div>
         </Router>
