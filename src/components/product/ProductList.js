@@ -38,10 +38,37 @@ const ProductList = () => {
         }
     };
 
+    const formatCurrency = (amount) => {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        }).format(amount);
+    };
+
+    const exportToPDF = () => {
+        const doc = new jsPDF();
+        doc.autoTable({
+            head: [['Name', 'Category', 'Description', 'Price', 'Stock Quantity']],
+            body: filteredProducts.map(product => [
+                product.productName,
+                product.category?.categoryName || 'N/A',
+                product.description,
+                formatCurrency(product.price),
+                product.stockQuantity,
+            ]),
+        });
+        doc.save('products.pdf');
+    };
+
     const columns = [
         {
             name: 'Name',
             selector: row => row.productName,
+            sortable: true,
+        },
+        {
+            name: 'Category',
+            selector: row => row.category?.categoryName || 'N/A',
             sortable: true,
         },
         {
@@ -68,30 +95,10 @@ const ProductList = () => {
     const filteredProducts = products.filter(product =>
         product.productName.toLowerCase().includes(searchText.toLowerCase()) ||
         product.description.toLowerCase().includes(searchText.toLowerCase()) ||
+        product.category?.categoryName?.toLowerCase().includes(searchText.toLowerCase()) ||
         product.price.toString().includes(searchText) ||
         product.stockQuantity.toString().includes(searchText)
     );
-
-    const exportToPDF = () => {
-        const doc = new jsPDF();
-        doc.autoTable({
-            head: [['Name', 'Description', 'Price', 'Stock Quantity']],
-            body: filteredProducts.map(product => [
-                product.productName,
-                product.description,
-                formatCurrency(product.price),
-                product.stockQuantity,
-            ]),
-        });
-        doc.save('products.pdf');
-    };
-
-    const formatCurrency = (amount) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD'
-        }).format(amount);
-    };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;

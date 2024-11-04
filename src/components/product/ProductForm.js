@@ -9,31 +9,55 @@ const ProductForm = () => {
         description: '',
         price: '',
         stockQuantity: '',
+        categoryId: '', // Category ID için yeni bir alan ekleniyor
     });
+    const [categories, setCategories] = useState([]); // Kategori listesi
     const [successMessage, setSuccessMessage] = useState('');
     const [errors, setErrors] = useState({});
-    const { productId } = useParams(); // URL'den id parametresini alıyoruz
+    const { productId } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (productId) {
-            fetchProduct(productId);
-        }
+        const fetchData = async () => {
+            await fetchCategories(); // Kategorileri önce yükleyelim
+            if (productId) {
+                await fetchProduct(productId); // Ardından ürünü yükleyelim
+            }
+        };
+
+        fetchData();
     }, [productId]);
 
     const fetchProduct = async (productId) => {
         try {
             const response = await axios.get(`/api/products/${productId}`);
-            setForm(response.data);
+            const productData = response.data;
+            setForm({
+                productId: productData.productId,
+                productName: productData.productName,
+                description: productData.description,
+                price: productData.price,
+                stockQuantity: productData.stockQuantity,
+                categoryId: productData.category.categoryId, // Kategori ID'sini ayarlıyoruz
+            });
         } catch (error) {
             console.error('Error fetching product:', error);
+        }
+    };
+
+    const fetchCategories = async () => {
+        try {
+            const response = await axios.get('/api/categories');
+            setCategories(response.data);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
         }
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm({ ...form, [name]: value });
-        setErrors({ ...errors, [name]: '' }); // Hataları temizle
+        setErrors({ ...errors, [name]: '' });
     };
 
     const validateForm = () => {
@@ -42,6 +66,7 @@ const ProductForm = () => {
         if (!form.price) formErrors.price = 'Price is required';
         if (!form.stockQuantity) formErrors.stockQuantity = 'Stock quantity is required';
         if (!form.description) formErrors.description = 'Description is required';
+        if (!form.categoryId) formErrors.categoryId = 'Category is required';
 
         setErrors(formErrors);
         return Object.keys(formErrors).length === 0;
@@ -56,23 +81,21 @@ const ProductForm = () => {
             description: form.description,
             price: form.price,
             stockQuantity: form.stockQuantity,
+            categoryId: form.categoryId , // Kategori ID'sini category nesnesi içinde gönderiyoruz
         };
 
         try {
             if (productId) {
-                // Güncelleme işlemi
                 await axios.put(`/api/products/${productId}`, formData);
                 setSuccessMessage('Product updated successfully');
             } else {
-                // Ekleme işlemi
                 await axios.post('/api/products', formData);
                 setSuccessMessage('Product added successfully');
             }
 
-            // Mesajı 2 saniye sonra temizleyip yönlendirme yapalım
             setTimeout(() => {
                 setSuccessMessage('');
-                navigate('/product'); // Ürün listesine yönlendirme
+                navigate('/product');
             }, 2000);
         } catch (error) {
             console.error('There was an error saving the Product!', error);
@@ -88,7 +111,7 @@ const ProductForm = () => {
                     <div className="form-group col-md-4 mb-3">
                         <label htmlFor="productName" className="mb-1">Name</label>
                         <input
-                            id="name"
+                            id="productName"
                             name="productName"
                             type="text"
                             className="form-control"
@@ -139,6 +162,26 @@ const ProductForm = () => {
                             required
                         />
                         {errors.description && <div className="text-danger">{errors.description}</div>}
+                    </div>
+
+                    <div className="form-group col-md-4 mb-3">
+                        <label htmlFor="categoryId" className="mb-1">Category</label>
+                        <select
+                            id="categoryId"
+                            name="categoryId"
+                            className="form-control"
+                            value={form.categoryId}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Select a category</option>
+                            {categories.map(category => (
+                                <option key={category.categoryId} value={category.categoryId}>
+                                    {category.categoryName}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.categoryId && <div className="text-danger">{errors.categoryId}</div>}
                     </div>
                 </div>
 
