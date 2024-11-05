@@ -19,6 +19,8 @@ import MenuList from "./components/menu/MenuList";
 import MenuForm from "./components/menu/MenuForm";
 import CategoryForm from "./components/category/CategoryForm";
 import CategoryList from "./components/category/CategoryList";
+import SalesPersonForm from "./components/salesperson/SalesPersonForm";
+import SalesPersonList from "./components/salesperson/SalesPersonList";
 
 const App = () => {
     return (
@@ -46,6 +48,10 @@ const App = () => {
 	                <Route path="/category" element={<CategoryList/>} />
 	                <Route path="/category/add" element={<CategoryForm/>} />
 	                <Route path="/category/edit/:categoryId" element={<CategoryForm/>} />
+
+	                <Route path="/salesperson" element={<SalesPersonList/>} />
+	                <Route path="/salesperson/add" element={<SalesPersonForm/>} />
+	                <Route path="/salesperson/edit/:salespersonId" element={<SalesPersonForm/>} />
 
                     <Route path="/sale" element={<SaleList/>} />
                     <Route path="/sale-details/:id" element={<SaleDetails/>} />
