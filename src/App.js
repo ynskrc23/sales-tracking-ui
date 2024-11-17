@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from './components/layout/Navbar';
@@ -8,11 +7,8 @@ import CustomerList from "./components/customer/CustomerList";
 import CustomerForm from "./components/customer/CustomerForm";
 import SaleList from "./components/sale/SaleList";
 import InvoiceList from "./components/invoice/InvoiceList";
-import SalesRepresentativeList from "./components/salesrepresentative/SalesRepresentativeList";
 import ProductForm from "./components/product/ProductForm";
 import SaleDetails from "./components/sale/SaleDetails";
-import SalesRepresentativeAdd from "./components/salesrepresentative/SalesRepresentativeAdd";
-import SalesRepresentativeUpdate from "./components/salesrepresentative/SalesRepresentativeUpdate";
 import RoleList from "./components/role/RoleList";
 import RoleForm from "./components/role/RoleForm";
 import MenuList from "./components/menu/MenuList";
@@ -21,50 +17,68 @@ import CategoryForm from "./components/category/CategoryForm";
 import CategoryList from "./components/category/CategoryList";
 import SalesPersonForm from "./components/salesperson/SalesPersonForm";
 import SalesPersonList from "./components/salesperson/SalesPersonList";
+import UserForm from "./components/user/UserForm";
+import UserList from "./components/user/UserList";
+import LoginPage from './components/auth/LoginPage';
+import PrivateRoute from './components/auth/PrivateRoute'; // PrivateRoute importu
 
 const App = () => {
-    return (
-        <Router>
-            <div className="container">
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<Home/>} />
-                    <Route path="/product" element={<ProductList/>} />
-                    <Route path="/product/add" element={<ProductForm/>} />
-                    <Route path="/product/edit/:productId" element={<ProductForm/>} />
+	return (
+		<Router>
+			<div className="container">
+				<Routes>
+					{/* Login Page */}
+					<Route path="/" element={<LoginPage />} />
 
-                    <Route path="/customer" element={<CustomerList/>} />
-                    <Route path="/customer/add" element={<CustomerForm/>} />
-                    <Route path="/customer/edit/:customerId" element={<CustomerForm/>} />
+					{/* Protected Routes */}
+					<Route
+						path="/*"
+						element={
+							<>
+								<Navbar />
+								<Routes>
+									<Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
 
-	                <Route path="/role" element={<RoleList/>} />
-	                <Route path="/role/add" element={<RoleForm/>} />
-	                <Route path="/role/edit/:roleId" element={<RoleForm/>} />
+									<Route path="/user" element={<PrivateRoute><UserList /></PrivateRoute>} />
+									<Route path="/user/add" element={<PrivateRoute><UserForm /></PrivateRoute>} />
+									<Route path="/user/edit/:userId" element={<PrivateRoute><UserForm /></PrivateRoute>} />
 
-	                <Route path="/menu" element={<MenuList/>} />
-	                <Route path="/menu/add" element={<MenuForm/>} />
-	                <Route path="/menu/edit/:menuId" element={<MenuForm/>} />
+									<Route path="/product" element={<PrivateRoute><ProductList /></PrivateRoute>} />
+									<Route path="/product/add" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
+									<Route path="/product/edit/:productId" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
 
-	                <Route path="/category" element={<CategoryList/>} />
-	                <Route path="/category/add" element={<CategoryForm/>} />
-	                <Route path="/category/edit/:categoryId" element={<CategoryForm/>} />
+									<Route path="/customer" element={<PrivateRoute><CustomerList /></PrivateRoute>} />
+									<Route path="/customer/add" element={<PrivateRoute><CustomerForm /></PrivateRoute>} />
+									<Route path="/customer/edit/:customerId" element={<PrivateRoute><CustomerForm /></PrivateRoute>} />
 
-	                <Route path="/salesperson" element={<SalesPersonList/>} />
-	                <Route path="/salesperson/add" element={<SalesPersonForm/>} />
-	                <Route path="/salesperson/edit/:salespersonId" element={<SalesPersonForm/>} />
+									<Route path="/role" element={<PrivateRoute><RoleList /></PrivateRoute>} />
+									<Route path="/role/add" element={<PrivateRoute><RoleForm /></PrivateRoute>} />
+									<Route path="/role/edit/:roleId" element={<PrivateRoute><RoleForm /></PrivateRoute>} />
 
-                    <Route path="/sale" element={<SaleList/>} />
-                    <Route path="/sale-details/:id" element={<SaleDetails/>} />
+									<Route path="/menu" element={<PrivateRoute><MenuList /></PrivateRoute>} />
+									<Route path="/menu/add" element={<PrivateRoute><MenuForm /></PrivateRoute>} />
+									<Route path="/menu/edit/:menuId" element={<PrivateRoute><MenuForm /></PrivateRoute>} />
 
-                    <Route path="/invoice" element={<InvoiceList/>} />
+									<Route path="/category" element={<PrivateRoute><CategoryList /></PrivateRoute>} />
+									<Route path="/category/add" element={<PrivateRoute><CategoryForm /></PrivateRoute>} />
+									<Route path="/category/edit/:categoryId" element={<PrivateRoute><CategoryForm /></PrivateRoute>} />
 
-                    <Route path="/salesrepresentative" element={<SalesRepresentativeList/>} />
-                    <Route path="/salesrepresentative-add" element={<SalesRepresentativeAdd/>} />
-                    <Route path="/salesrepresentative-update/:id" element={<SalesRepresentativeUpdate/>} />
-                </Routes>
-            </div>
-        </Router>
-    );
+									<Route path="/salesperson" element={<PrivateRoute><SalesPersonList /></PrivateRoute>} />
+									<Route path="/salesperson/add" element={<PrivateRoute><SalesPersonForm /></PrivateRoute>} />
+									<Route path="/salesperson/edit/:salespersonId" element={<PrivateRoute><SalesPersonForm /></PrivateRoute>} />
+
+									<Route path="/sale" element={<PrivateRoute><SaleList /></PrivateRoute>} />
+									<Route path="/sale-details/:id" element={<PrivateRoute><SaleDetails /></PrivateRoute>} />
+
+									<Route path="/invoice" element={<PrivateRoute><InvoiceList /></PrivateRoute>} />
+								</Routes>
+							</>
+						}
+					/>
+				</Routes>
+			</div>
+		</Router>
+	);
 };
 
 export default App;
