@@ -10,7 +10,7 @@ const InvoiceList = () => {
         const fetchInvoices = async () => {
             try {
                 const response = await axios.get('api/invoices');
-                setInvoices(response.data);
+                setInvoices(response.data.detail);
             } catch (error) {
                 setError(error);
             } finally {

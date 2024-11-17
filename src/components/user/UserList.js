@@ -16,7 +16,7 @@ const UserList = () => {
 		const fetchUsers = async () => {
 			try {
 				const response = await axios.get('/api/users');
-				setUsers(response.data);
+				setUsers(response.data.detail);
 			} catch (error) {
 				setError(error);
 			} finally {

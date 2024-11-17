@@ -16,7 +16,7 @@ const MenuList = () => {
 		const fetchMenus = async () => {
 			try {
 				const response = await axios.get('/api/menus');
-				setMenus(response.data);
+				setMenus(response.data.detail);
 			} catch (error) {
 				setError(error);
 			} finally {

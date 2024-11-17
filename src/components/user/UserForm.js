@@ -28,7 +28,7 @@ const UserForm = () => {
 	const fetchUser = async (userId) => {
 		try {
 			const response = await axios.get(`/api/users/${userId}`);
-			const userData = response.data;
+			const userData = response.data.detail;
 			setForm({
 				userId: userData.userId,
 				fullName: userData.fullName,
@@ -46,7 +46,7 @@ const UserForm = () => {
 	const fetchRoles = async () => {
 		try {
 			const response = await axios.get('/api/roles'); // Örnek bir endpoint
-			setRoles(response.data);
+			setRoles(response.data.detail);
 		} catch (error) {
 			console.error('Error fetching roles:', error);
 		}

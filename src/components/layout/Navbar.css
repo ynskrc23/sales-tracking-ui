@@ -18,3 +18,7 @@
 .navbar-brand {
     font-weight: bold;
 }
+
+.navbar .dropdown {
+    margin-left: auto; /* Sağ tarafa taşır */
+}

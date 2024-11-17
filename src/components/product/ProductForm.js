@@ -31,7 +31,7 @@ const ProductForm = () => {
     const fetchProduct = async (productId) => {
         try {
             const response = await axios.get(`/api/products/${productId}`);
-            const productData = response.data;
+            const productData = response.data.detail;
             setForm({
                 productId: productData.productId,
                 productName: productData.productName,
@@ -48,7 +48,7 @@ const ProductForm = () => {
     const fetchCategories = async () => {
         try {
             const response = await axios.get('/api/categories');
-            setCategories(response.data);
+            setCategories(response.data.detail);
         } catch (error) {
             console.error('Error fetching categories:', error);
         }

@@ -27,7 +27,7 @@ const CustomerForm = () => {
 	const fetchCustomer = async (customerId) => {
 		try {
 			const response = await axios.get(`/api/customers/${customerId}`);
-			setForm(response.data);
+			setForm(response.data.detail);
 		} catch (error) {
 			console.error('Error fetching customer:', error);
 		}

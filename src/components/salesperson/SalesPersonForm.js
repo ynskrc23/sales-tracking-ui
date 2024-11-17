@@ -25,7 +25,7 @@ const SalesPersonForm = () => {
 	const fetchSalesPerson = async (salespersonId) => {
 		try {
 			const response = await axios.get(`/api/salespersons/${salespersonId}`);
-			setForm(response.data);
+			setForm(response.data.detail);
 		} catch (error) {
 			console.error('Error fetching salesperson:', error);
 		}

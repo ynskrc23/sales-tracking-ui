@@ -33,7 +33,7 @@ const RoleForm = () => {
 		const fetchMenus = async () => {
 			try {
 				const response = await axios.get('/api/menus'); // Menüler için API çağrısı
-				const fetchedMenus = response.data;
+				const fetchedMenus = response.data.detail;
 
 				// Sadece menuParentId'si 0 olan menüleri filtrele
 				const filteredMenus = fetchedMenus.filter(menu => menu.menuParentId === 0);
@@ -58,7 +58,7 @@ const RoleForm = () => {
 			if (roleId) {
 				try {
 					const response = await axios.get(`/api/roles/${roleId}`);
-					const roleData = response.data;
+					const roleData = response.data.detail;
 
 					// Role bilgilerini ayarla
 					setRoleName(roleData.roleName);
@@ -155,7 +155,7 @@ const RoleForm = () => {
 				navigate('/role'); // Yönlendirme yap
 			}, 2000);
 		} catch (error) {
-			console.error("Role eklenirken/güncellenirken hata oluştu:", error.response ? error.response.data : error.message);
+			console.error("Role eklenirken/güncellenirken hata oluştu:", error.response ? error.response.data.detail : error.message);
 		}
 	};
 

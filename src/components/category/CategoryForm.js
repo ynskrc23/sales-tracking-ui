@@ -21,7 +21,7 @@ const CategoryForm = () => {
 	const fetchCategory = async (categoryId) => {
 		try {
 			const response = await axios.get(`/api/categories/${categoryId}`);
-			setForm(response.data);
+			setForm(response.data.detail);
 		} catch (error) {
 			console.error('Error fetching category:', error);
 		}

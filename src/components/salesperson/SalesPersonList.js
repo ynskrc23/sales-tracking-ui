@@ -16,7 +16,7 @@ const SalesPersonList = () => {
 		const fetchSalesPersons = async () => {
 			try {
 				const response = await axios.get('/api/salespersons');
-				setSalesPersons(response.data);
+				setSalesPersons(response.data.detail);
 			} catch (error) {
 				setError(error);
 			} finally {

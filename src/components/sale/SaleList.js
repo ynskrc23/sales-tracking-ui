@@ -13,8 +13,8 @@ const SaleList = () => {
         const fetchSales = async () => {
             try {
                 const response = await axios.get('/api/sales/grouped-by-sale-number');
-                setSales(response.data);
-                calculateTotalSalesAmount(response.data);
+                setSales(response.data.detail);
+                calculateTotalSalesAmount(response.data.detail);
             } catch (error) {
                 setError(error);
             } finally {

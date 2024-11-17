@@ -16,7 +16,7 @@ const RoleList = () => {
 		const fetchRoles = async () => {
 			try {
 				const response = await axios.get('/api/roles');
-				setRoles(response.data);
+				setRoles(response.data.detail);
 			} catch (error) {
 				setError(error);
 			} finally {

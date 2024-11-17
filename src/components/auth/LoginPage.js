@@ -8,12 +8,14 @@ const LoginPage = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const navigate = useNavigate();
 
+	// Formdaki her input değeri değiştiğinde tetiklenir
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
 		setErrors({ ...errors, [name]: '' }); // Hataları temizle
 	};
 
+	// Form doğrulaması
 	const validateForm = () => {
 		const formErrors = {};
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -32,16 +34,25 @@ const LoginPage = () => {
 		return Object.keys(formErrors).length === 0;
 	};
 
+	// Giriş işlemini yapar
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!validateForm()) return;
 
 		try {
-			const response = await axios.post('/api/auth/login', form); // Backend login endpoint
-			const token = response.data.token;
+			// Backend'e login isteği gönderiyoruz
+			const response = await axios.post('/api/auth/login', form);
+			console.log(response);
+			// Token'ı localStorage'a kaydediyoruz
+			const token = response.data.detail.token;
+			const fullName = response.data.detail.fullName;
 			localStorage.setItem('token', token); // Token'ı tarayıcıya kaydet
-			navigate('/dashboard'); // Kullanıcıyı yönlendir
+			localStorage.setItem('fullName', fullName); // Kullanıcı adı ve soyadı kaydet
+
+			// Kullanıcıyı dashboard'a yönlendiriyoruz
+			navigate('/dashboard');
 		} catch (error) {
+			// Hata mesajını set ediyoruz
 			setErrorMessage(
 				error.response?.data?.message || 'Login failed. Please try again.'
 			);
@@ -53,9 +64,13 @@ const LoginPage = () => {
 			<div className="row justify-content-center">
 				<div className="col-md-4">
 					<h3 className="text-center mb-4">Login</h3>
+
+					{/* Hata mesajı varsa göster */}
 					{errorMessage && (
 						<div className="alert alert-danger">{errorMessage}</div>
 					)}
+
+					{/* Giriş formu */}
 					<form onSubmit={handleSubmit}>
 						<div className="mb-3">
 							<label htmlFor="email" className="form-label">Email</label>
