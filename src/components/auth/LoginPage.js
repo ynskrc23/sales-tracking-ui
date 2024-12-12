@@ -46,8 +46,10 @@ const LoginPage = () => {
 			// Token'ı localStorage'a kaydediyoruz
 			const token = response.data.detail.token;
 			const fullName = response.data.detail.fullName;
+			const permission = response.data.detail.role.rolePermission;
 			localStorage.setItem('token', token); // Token'ı tarayıcıya kaydet
 			localStorage.setItem('fullName', fullName); // Kullanıcı adı ve soyadı kaydet
+			localStorage.setItem('permission', permission); // Kullanıcı permission kaydet
 
 			// Kullanıcıyı dashboard'a yönlendiriyoruz
 			navigate('/dashboard');

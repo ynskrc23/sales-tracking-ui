@@ -5,10 +5,7 @@ import Home from './components/home/Home';
 import ProductList from "./components/product/ProductList";
 import CustomerList from "./components/customer/CustomerList";
 import CustomerForm from "./components/customer/CustomerForm";
-import SaleList from "./components/sale/SaleList";
-import InvoiceList from "./components/invoice/InvoiceList";
 import ProductForm from "./components/product/ProductForm";
-import SaleDetails from "./components/sale/SaleDetails";
 import RoleList from "./components/role/RoleList";
 import RoleForm from "./components/role/RoleForm";
 import MenuList from "./components/menu/MenuList";
@@ -20,7 +17,7 @@ import SalesPersonList from "./components/salesperson/SalesPersonList";
 import UserForm from "./components/user/UserForm";
 import UserList from "./components/user/UserList";
 import LoginPage from './components/auth/LoginPage';
-import PrivateRoute from './components/auth/PrivateRoute'; // PrivateRoute importu
+import PrivateRoute from './components/auth/PrivateRoute';
 
 const App = () => {
 	return (
@@ -66,11 +63,6 @@ const App = () => {
 									<Route path="/salesperson" element={<PrivateRoute><SalesPersonList /></PrivateRoute>} />
 									<Route path="/salesperson/add" element={<PrivateRoute><SalesPersonForm /></PrivateRoute>} />
 									<Route path="/salesperson/edit/:salespersonId" element={<PrivateRoute><SalesPersonForm /></PrivateRoute>} />
-
-									<Route path="/sale" element={<PrivateRoute><SaleList /></PrivateRoute>} />
-									<Route path="/sale-details/:id" element={<PrivateRoute><SaleDetails /></PrivateRoute>} />
-
-									<Route path="/invoice" element={<PrivateRoute><InvoiceList /></PrivateRoute>} />
 								</Routes>
 							</>
 						}
